@@ -1,7 +1,14 @@
 /* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+#include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
 
 /* map Zen's extra keys */
+#define X_LT  &none         // top row, left
+#define X_LM  &none         // middle row, left
+#define X_LB  &none         // bottom row, left
+#define X_RT  &none         // top row, right
+#define X_RM  &none         // middle row, right
+#define X_RB  &none         // bottom row, right
+
 #define X_LH  &smart_mouse  // thumb row, left
 #define X_RH  &bs_del       // thumb row, right
 
@@ -12,5 +19,6 @@
 #include "base.keymap"
 
 /* use 5-column layout for Zen */
-/ { chosen { zmk,matrix_transform = &five_column_transform; }; };
+/ { chosen { zmk,matrix_transform = &six_column_transform; }; };
 
+/* vim: set ft=c tw=174: */
