@@ -19,6 +19,6 @@
 #include "base.keymap"
 
 /* use 5-column layout for Zen */
-/ { chosen { zmk,matrix_transform = &six_column_transform; }; };
+// / { chosen { zmk,matrix_transform = &five_column_transform; }; };
 
 /* vim: set ft=c tw=174: */
