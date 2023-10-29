@@ -144,7 +144,7 @@ ZMK_BEHAVIOR(smart_mouse, tri_state,
 // Alt+Tab swapper, requires PR #1366
 ZMK_BEHAVIOR(swapper, tri_state,
     bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-    ignored-key-positions = <LT2>;
+    ignored-key-positions = <LT2 RH0>;
 )
 
 // Sticky layer + sticky shift (workaround for issue #1421)
@@ -308,7 +308,7 @@ ZMK_LAYER(nav,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     ___           ___           ___           ___           ___             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &kp LCTRL     ___             X_MH     &kp LSHFT    CANCEL                                                    X_RH
+    X_LH                                               &kp LCTRL     ___             X_MH     &kp LSHFT     CANCEL                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )                                                                                                // TODO SWITCH CANCEL
 
