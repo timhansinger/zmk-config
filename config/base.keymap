@@ -83,14 +83,14 @@ MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 // ZMK_BEHAVIOR(mt_home, hold_tap, bindings = <&masked_home>, <&kp>; MT_CORE)
 // ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
 
-// #define NAV_LEFT  &mt LG(LEFT)  LEFT    // tap: left  | long-tap: macOS beginning of line
-// #define NAV_RIGHT &mt LG(RIGHT) RIGHT   // tap: right | long-tap: macOS end       of line
-// #define NAV_UP    &mt LG(UP)    UP      // tap: up    | long-tap: macOS beginning of document
-// #define NAV_DOWN  &mt LG(DOWN)  DOWN    // tap: down  | long-tap: macOS end       of document
-#define NAV_LEFT  &kp LEFT
-#define NAV_RIGHT &kp RIGHT
-#define NAV_UP    &kp UP
-#define NAV_DOWN  &kp DOWN
+#define NAV_LEFT  &mt LG(LEFT)  LEFT    // tap: left  | long-tap: macOS beginning of line
+#define NAV_RIGHT &mt LG(RIGHT) RIGHT   // tap: right | long-tap: macOS end       of line
+#define NAV_UP    &mt LG(UP)    UP      // tap: up    | long-tap: macOS beginning of document
+#define NAV_DOWN  &mt LG(DOWN)  DOWN    // tap: down  | long-tap: macOS end       of document
+// #define NAV_LEFT  &kp LEFT
+// #define NAV_RIGHT &kp RIGHT
+// #define NAV_UP    &kp UP
+// #define NAV_DOWN  &kp DOWN
 #define NAV_BSPC  &mt LA(BSPC)  BSPC    // tap: bspc  | long-tap: macOS delete word backward
 #define NAV_DEL   &mt LA(DEL)   DEL     // tap: del   | long-tap: macOS delete word forward
 
