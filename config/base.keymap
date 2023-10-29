@@ -246,17 +246,17 @@ ZMK_BEHAVIOR(win_sleep, macro,
 
 // macOS aliases
 
-// tap: dot | shift + tap: colon | ctrl + shift + tap: >
+// tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
 ZMK_BEHAVIOR(tab_next, mod_morph,
     bindings = <&kp LS(LG(RBKT))>, <&kp LA(C)>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
+
+// tap: Next Tab | shift + tap: Yabai: focus next window in window tree
 ZMK_BEHAVIOR(tab_prev, mod_morph,
     bindings = <&kp LS(LG(LBKT))>, <&kp LA(Z)>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
-// #define TAB_NEXT     &kp LS(LG(RBKT))  // LA(C)
-// #define TAB_PREV     &kp LS(LG(LBKT))  // LA(Z)
 
 /* Keymap */
 
@@ -289,7 +289,7 @@ ZMK_LAYER(base,
 
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           &kp LSHFT     &swapper      ___             X_MT     &kp PG_UP     NAV_BSPC      &tab_prev     $tab_next     NAV_DEL         X_RT
+    X_LT     ___           ___           &kp LSHFT     &swapper      ___             X_MT     &kp PG_UP     NAV_BSPC      &tab_prev     &tab_next     NAV_DEL         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     // X_LM     &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
     X_LM     &kp LALT      ___           ___           &kp LGUI      ___             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
