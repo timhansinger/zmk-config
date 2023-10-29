@@ -187,7 +187,8 @@ ZMK_BEHAVIOR(qexcl, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
+//// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
+// tap: space | shift + tap: return | hold: activate layer
 ZMK_BEHAVIOR(lt_spc, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
@@ -195,7 +196,8 @@ ZMK_BEHAVIOR(lt_spc, hold_tap,
     bindings = <&mo>, <&spc_morph>;
 )
 ZMK_BEHAVIOR(spc_morph, mod_morph,
-    bindings = <&kp SPACE>, <&dot_spc>;
+    // bindings = <&kp SPACE>, <&dot_spc>;
+    bindings = <&kp SPACE>, <&kp RETURN>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 ZMK_BEHAVIOR(dot_spc, macro,
