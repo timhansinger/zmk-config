@@ -83,14 +83,14 @@ MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 // ZMK_BEHAVIOR(mt_home, hold_tap, bindings = <&masked_home>, <&kp>; MT_CORE)
 // ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
 
-#define NAV_LEFT  &mt LG(LEFT)  LEFT    // tap: left  | long-tap: macOS beginning of line
-#define NAV_RIGHT &mt LG(RIGHT) RIGHT   // tap: right | long-tap: macOS end       of line
-#define NAV_UP    &mt LG(UP)    UP      // tap: up    | long-tap: macOS beginning of document
-#define NAV_DOWN  &mt LG(DOWN)  DOWN    // tap: down  | long-tap: macOS end       of document
-// #define NAV_LEFT  &kp LEFT
-// #define NAV_RIGHT &kp RIGHT
-// #define NAV_UP    &kp UP
-// #define NAV_DOWN  &kp DOWN
+// #define NAV_LEFT  &mt LG(LEFT)  LEFT    // tap: left  | long-tap: macOS beginning of line
+// #define NAV_RIGHT &mt LG(RIGHT) RIGHT   // tap: right | long-tap: macOS end       of line
+// #define NAV_UP    &mt LG(UP)    UP      // tap: up    | long-tap: macOS beginning of document
+// #define NAV_DOWN  &mt LG(DOWN)  DOWN    // tap: down  | long-tap: macOS end       of document
+#define NAV_LEFT  &kp LEFT
+#define NAV_RIGHT &kp RIGHT
+#define NAV_UP    &kp UP
+#define NAV_DOWN  &kp DOWN
 #define NAV_BSPC  &mt LA(BSPC)  BSPC    // tap: bspc  | long-tap: macOS delete word backward
 #define NAV_DEL   &mt LA(DEL)   DEL     // tap: del   | long-tap: macOS delete word forward
 
@@ -244,6 +244,20 @@ ZMK_BEHAVIOR(win_sleep, macro,
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
 #define VOL_DOWN    &hmr LCTRL C_VOL_DN
 
+// macOS aliases
+
+// tap: dot | shift + tap: colon | ctrl + shift + tap: >
+ZMK_BEHAVIOR(tab_next, mod_morph,
+    bindings = <&kp LS(LG(RBKT))>, <&kp LA(C)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+ZMK_BEHAVIOR(tab_prev, mod_morph,
+    bindings = <&kp LS(LG(LBKT))>, <&kp LA(Z)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+// #define TAB_NEXT     &kp LS(LG(RBKT))  // LA(C)
+// #define TAB_PREV     &kp LS(LG(LBKT))  // LA(Z)
+
 /* Keymap */
 
 ZMK_CONDITIONAL_LAYER(FN NUM, SYS)  // FN + NUM --> SYS
@@ -256,7 +270,8 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &lt FN RET    &lt_spc NAV 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
+    // X_LH                                               &lt FN RET    &lt_spc NAV 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
+    X_LH                                               &lt FN RET    &kp SPACE       X_MH     &smart_shft   SMART_NUM                                                 X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -274,14 +289,14 @@ ZMK_LAYER(base,
 
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           &kp LSHFT     &swapper      ___             X_MT     &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
+    X_LT     ___           ___           &kp LSHFT     &swapper      ___             X_MT     &kp PG_UP     NAV_BSPC      &tab_prev     $tab_next     NAV_DEL         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     // X_LM     &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
-    X_LM     &sk LSHFT     ___           ___           &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
+    X_LM     &kp LALT      ___           ___           &kp LGUI      ___             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     &kp INS       &kp TAB       &kp LT        &kp GT        ___             X_RB
+    X_LB     ___           ___           ___           ___           ___             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     ___           CANCEL                                                    X_RH
+    X_LH                                               &kp LCTRL     ___             X_MH     ___           CANCEL                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )                                                                                                // TODO SWITCH CANCEL
 
