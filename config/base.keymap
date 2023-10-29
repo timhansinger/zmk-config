@@ -15,11 +15,12 @@
 
 #define DEF 0
 #define NAV 1
-#define FN 2
-#define NUM 3
-#define SYS 4
-#define UC 5
-#define MOUSE 6
+#define SYM 2
+#define FN 3
+#define NUM 4
+#define SYS 5
+#define UC 6
+#define MOUSE 7
 
 #include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi"
@@ -244,6 +245,15 @@ ZMK_BEHAVIOR(win_sleep, macro,
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
 #define VOL_DOWN    &hmr LCTRL C_VOL_DN
 
+#define LT_HM       &hml LSHIFT LT
+#define LBKT_HM     &hml LCTRL LBKT
+#define LBRC_HM     &hml LALT LBRC
+#define LPAR_HM     &hml LGUI LPAR
+#define RPAR_HM     &hml LGUI RPAR
+#define RBRC_HM     &hml LALT RBRC
+#define RBKT_HM     &hml LCTRL RBKT
+#define GT_HM       &hml RSHIFT GT
+
 // macOS aliases
 
 // tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
@@ -266,12 +276,12 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T           X_MT     &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LSHIFT A &hml LCTRL S  &hml LALT D   &hml LGUI F   &kp G           X_MM     &kp H         &hmr LGUI J   &hmr LALT K   &hmr LCTRL L  &hmr RSHFT SQT  X_RM
+    X_LM     &hml LSHIFT A &hml LCTRL S  &hml LALT D   &hml LGUI F   &kp G           X_MM     &kp H         &hmr LGUI J   &hmr LALT K   &hmr LCTRL L  &hmr RSHFT MINUS X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     // X_LH                                               &lt FN RET    &lt_spc NAV 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
-    X_LH                                               &lt FN RET    &kp SPACE       X_MH     &smart_shft   SMART_NUM                                                 X_RH
+    X_LH                                               &lt FN RET    &lt_spc SYM 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -297,6 +307,21 @@ ZMK_LAYER(nav,
     X_LB     ___           ___           ___           ___           ___             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               &kp LCTRL     ___             X_MH     ___           CANCEL                                                    X_RH
+//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
+)                                                                                                // TODO SWITCH CANCEL
+
+//   !+&|=@
+// <[{('")}]>
+// `^#?~\/*$%
+ZMK_LAYER(sym,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     XXX           XXX           &kp EXCL      &kp PLUS      &kp AMPS        X_MT     &kp PIPE      &kp EQUAL     &kp AT        XXX           XXX             X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     LT_HM         LBKT_HM       LBRC_HM       LPAR_HM       &kp SQT         X_MM     &kp DQT       RPAR_HM       RBRC_HM       RBKT_HM       GT_HM           X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &kp GRAVE     &kp CARET     &kp HASH      &kp QMARK     &kp TILDE       X_MB     &kp BSLH      &kp SLASH     &kp ASTRK     &kp DOLLAR    &kp PERCENT     X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                               ___           ___             X_MH     ___           CANCEL                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )                                                                                                // TODO SWITCH CANCEL
 
