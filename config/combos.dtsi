@@ -18,6 +18,7 @@
 // #define HRC_TAB    &hml         LA(LCTRL) TAB
 // #define HRC_REPEAT &hml_repeat  LS(LCTRL) 0
 #define HRC_TAB    &hml         LA(LGUI)  TAB
+#define HRC_RET    &hml         LC(LGUI)  RET
 #define HRC_LPAR   &hmr_lpar_lt RS(LCTRL) 0
 #define HRC_RPAR   &hmr_rpar_gt LA(LCTRL) 0
 
@@ -30,9 +31,10 @@ ZMK_COMBO(mouse, &smart_mouse,  LT3 LT1,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(nav,   &lt NAV ESC,   LM3 LM2,     DEF NAV NUM, COMBO_TERM_FAST)
 // ZMK_COMBO(repeat,HRC_REPEAT,    LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(tab,   HRC_TAB,       LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(ret,   HRC_RET,       LM3 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
 
 ZMK_COMBO(cut,   &kp LG(X),     LB3 LB1,     DEF NAV NUM, COMBO_TERM_FAST)  // macOS
-ZMK_COMBO(copy,  &kp LG(C),     LB3 LB2,     DEF NAV NUM, COMBO_TERM_FAST)  // macOS
+ZMK_COMBO(copy,  &lt UML LG(C), LB3 LB2,     DEF NAV NUM UML, COMBO_TERM_FAST)  // macOS
 ZMK_COMBO(paste, &kp LG(V),     LB2 LB1,     DEF NAV NUM, COMBO_TERM_FAST)  // macOS
 
 /* Horizontal combos - right hand */
@@ -45,7 +47,7 @@ ZMK_COMBO(lt,    &kp LT,        RM1 RM2,         NAV    , COMBO_TERM_FAST)
 ZMK_COMBO(gt,    &kp GT,        RM2 RM3,         NAV    , COMBO_TERM_FAST)
 
 ZMK_COMBO(lbkt,  &kp LBKT,      RB1 RB2,     DEF     NUM, COMBO_TERM_FAST)
-ZMK_COMBO(rbkt,  &kp RBKT,      RB2 RB3,     DEF     NUM, COMBO_TERM_FAST)
+ZMK_COMBO(rbkt,  &lt UML RBKT,  RB2 RB3,     DEF     NUM UML, COMBO_TERM_FAST)
 ZMK_COMBO(lbrc,  &kp LBRC,      RB1 RB2,         NAV    , COMBO_TERM_FAST)
 ZMK_COMBO(rbrc,  &kp RBRC,      RB2 RB3,         NAV    , COMBO_TERM_FAST)
 
