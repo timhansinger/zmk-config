@@ -96,6 +96,12 @@ MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 #define NAV_BSPC  &mt LA(BSPC)  BSPC    // tap: bspc  | long-tap: macOS delete word backward
 #define NAV_DEL   &mt LA(DEL)   DEL     // tap: del   | long-tap: macOS delete word forward
 
+// CUT / COPY / PASTE / UNDO
+#define UNDO_Z    &mt LG(Z)     Z       // tap: Z   | long-tap: macOS undo
+#define CUT_X     &mt LG(X)     X       // tap: X   | long-tap: macOS cut
+#define COPY_C    &mt LG(C)     C       // tap: C   | long-tap: macOS copy
+#define PASTE_V   &mt LG(V)     V       // tap: V   | long-tap: macOS paste
+
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 // #define MASK_MODS(NAME, MODS, BINDING) \
 //     ZMK_BEHAVIOR(NAME, mod_morph, \
@@ -188,8 +194,8 @@ ZMK_BEHAVIOR(qexcl, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-//// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
-// tap: space | shift + tap: return | hold: activate layer
+//// tap: space | shift + tap: return | hold: activate layer
+// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_BEHAVIOR(lt_spc, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
@@ -197,8 +203,8 @@ ZMK_BEHAVIOR(lt_spc, hold_tap,
     bindings = <&mo>, <&spc_morph>;
 )
 ZMK_BEHAVIOR(spc_morph, mod_morph,
-    // bindings = <&kp SPACE>, <&dot_spc>;
-    bindings = <&kp SPACE>, <&kp RETURN>;
+    bindings = <&kp SPACE>, <&dot_spc>;
+    // bindings = <&kp SPACE>, <&kp RETURN>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 ZMK_BEHAVIOR(dot_spc, macro,
@@ -307,19 +313,19 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
-#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
+#define DSK_NEXT    &hmr RALT LG(LC(RIGHT))  // next     desktop
 #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
 #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-#define VOL_DOWN    &hmr LCTRL C_VOL_DN
+#define VOL_DOWN    &hmr RCTRL C_VOL_DN
 
 #define LT_HM       &hml LSHIFT LT
 #define LBKT_HM     &hml LCTRL LBKT
 #define LBRC_HM     &hml LALT LBRC
 #define LPAR_HM     &hml LGUI LPAR
-#define RPAR_HM     &hml LGUI RPAR
-#define RBRC_HM     &hml LALT RBRC
-#define RBKT_HM     &hml LCTRL RBKT
+#define RPAR_HM     &hml RGUI RPAR
+#define RBRC_HM     &hml RALT RBRC
+#define RBKT_HM     &hml RCTRL RBKT
 #define GT_HM       &hml RSHIFT GT
 
 // macOS aliases
@@ -344,12 +350,12 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T           X_MT     &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LSHIFT A &hml LCTRL S  &hml LALT D   &hml LGUI F   &kp G           X_MM     &kp H         &hmr LGUI J   &hmr LALT K   &hmr LCTRL L  &hmr RSHFT MINUS X_RM
+    X_LM     &hml LSHIFT A &hml LCTRL S  &hml LALT D   &hml LGUI F   &kp G           X_MM     &kp H         &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
+    X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     // X_LH                                               &lt FN RET    &lt_spc NAV 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
-    X_LH                                               &lt_sk FN HYP &lt_spc SYM 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
+    X_LH                                               &lt FN ESC    &lt_spc SYM 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -367,16 +373,16 @@ ZMK_LAYER(base,
 
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           &kp LSHFT     &swapper      ___             X_MT     &kp PG_UP     NAV_BSPC      &tab_prev     &tab_next     NAV_DEL         X_RT
+    X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     &kp PG_UP     NAV_BSPC      &tab_prev     &tab_next     NAV_DEL         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     // X_LM     &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
-    X_LM     &kp LALT      ___           ___           &kp LGUI      ___             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
+    X_LM     &kp LALT      ___           ___           &kp LGUI      XXX             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       ___             X_RB
+    X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               &kp LCTRL     ___             X_MH     &kp LSHFT     CANCEL                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-)                                                                                                // TODO SWITCH CANCEL
+)
 
 //   !+&|=@
 // <[{('")}]>
@@ -389,17 +395,19 @@ ZMK_LAYER(sym,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp GRAVE     &kp CARET     &kp HASH      &kp QMARK     &kp TILDE       X_MB     &kp BSLH      &kp SLASH     &kp ASTRK     &kp DOLLAR    &kp PERCENT     X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     &kp RET       CANCEL                                                    X_RH
+    X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-)                                                                                                // TODO SWITCH CANCEL
+)                                                                                                // TODO: SWITCH CANCEL
 
 ZMK_LAYER(fn,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        ___             X_MT     ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep      X_RT
+    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        XXX             X_MT     XXX           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LSHFT F11 &hml LCTRL F4 &hml LALT F5 &hml LGUI F6  ___             X_MM     ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___             X_RM
+    X_LM     &hml LSHFT F11 &hml LCTRL F4 &hml LALT F5 &hml LGUI F6  &swapper        X_MM     XXX           ___           VOL_DOWN      ___           XXX             X_RM
+//                                                                                                      TODO: replace DSK_PREV and DSK_NEXT with Yabai variants
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB     PIN_APP       PIN_WIN       DSK_MGR       ___           ___             X_RB
+    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        &kp LSHFT       X_MB     PIN_APP       PIN_WIN       DSK_MGR       XXX           XXX             X_RB
+//  X_LB     &kp F10       &kp F1        &kp F2        &kp F3        &kp LSHFT       X_MB     TODO: REPLACE THESE WITH MACOS VARIANTS   XXX           XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     &kp C_MUTE    &kp C_PP                                                  X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
@@ -461,7 +469,7 @@ ZMK_LAYER(umlaut,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     XXX           XXX           XXX           XXX           XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
+    X_LH                                               ___           ___             X_MH     &kp LSHFT     ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
