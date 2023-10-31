@@ -334,10 +334,10 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 // macOS aliases
 
 // tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
-#define TAB_WIN_PRV &mt LS(LG(RBKT))   LA(C)
+#define TAB_WIN_PRV &mt LA(Z)   LS(LG(LBKT))
 
 // tap: Next Tab | shift + tap: Yabai: focus next window in window tree
-#define TAB_WIN_NXT &mt LS(LG(LBKT))   LA(Z)
+#define TAB_WIN_NXT &mt LA(C)   LS(LG(RBKT))
 
 // // tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
 // ZMK_BEHAVIOR(tab_next, mod_morph,
