@@ -3,10 +3,10 @@
 
 /* map Zen's extra keys */
 #define X_LT  &none         // top row, left
-#define X_LM  &none         // middle row, left
+#define X_LM  &kp ESC       // middle row, left
 #define X_LB  &none         // bottom row, left
 #define X_RT  &none         // top row, right
-#define X_RM  &none         // middle row, right
+#define X_RM  &kp RET       // middle row, right
 #define X_RB  &none         // bottom row, right
 
 #define X_LH  &smart_mouse  // thumb row, left
