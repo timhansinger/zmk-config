@@ -99,10 +99,27 @@ MAKE_HRM(hmr_rpar_gt_swi, &mo, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 #define NAV_DEL   &mt LA(DEL)   DEL     // tap: del   | long-tap: macOS delete word forward
 
 // CUT / COPY / PASTE / UNDO
-#define UNDO_Z    &mt LG(Z)     Z       // tap: Z   | long-tap: macOS undo
-#define CUT_X     &mt LG(X)     X       // tap: X   | long-tap: macOS cut
-#define COPY_C    &mt LG(C)     C       // tap: C   | long-tap: macOS copy
-#define PASTE_V   &mt LG(V)     V       // tap: V   | long-tap: macOS paste
+ZMK_BEHAVIOR(as_lgui, hold_tap, bindings = <&lgui_key_macro>, <&kp>; MT_CORE)
+ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
+    wait-ms = <0>;
+    tap-ms = <0>;
+    bindings =
+        <&macro_press>,
+        <&kp LGUI &macro_param_1to1>,
+        <&macro_tap>,
+        <&kp MACRO_PLACEHOLDER>,
+        <&macro_release>,
+        <&kp LGUI>;
+)
+
+#define UNDO_Z    &as_lgui Z     Z       // tap: Z   | long-tap: macOS undo
+#define CUT_X     &as_lgui X     X       // tap: X   | long-tap: macOS cut
+#define COPY_C    &as_lgui C     C       // tap: C   | long-tap: macOS copy
+#define PASTE_V   &as_lgui V     V       // tap: V   | long-tap: macOS paste
+// #define UNDO_Z    &mt LG(Z)     Z       // tap: Z   | long-tap: macOS undo
+// #define CUT_X     &mt LG(X)     X       // tap: X   | long-tap: macOS cut
+// #define COPY_C    &mt LG(C)     C       // tap: C   | long-tap: macOS copy
+// #define PASTE_V   &mt LG(V)     V       // tap: V   | long-tap: macOS paste
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 // #define MASK_MODS(NAME, MODS, BINDING) \
@@ -320,16 +337,18 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
 #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-#define VOL_DOWN    &hmr RCTRL C_VOL_DN
+#define VOL_DOWN    &hmr RALT C_VOL_DN
 
+// left hand
 #define LT_HM       &hml LSHIFT LT
 #define LBKT_HM     &hml LCTRL LBKT
 #define LBRC_HM     &hml LALT LBRC
 #define LPAR_HM     &hml LGUI LPAR
-#define RPAR_HM     &hml RGUI RPAR
-#define RBRC_HM     &hml RALT RBRC
-#define RBKT_HM     &hml RCTRL RBKT
-#define GT_HM       &hml RSHIFT GT
+// right hand
+#define RPAR_HM     &hmr RGUI RPAR
+#define RBRC_HM     &hmr RALT RBRC
+#define RBKT_HM     &hmr RCTRL RBKT
+#define GT_HM       &hmr RSHIFT GT
 
 // macOS aliases
 
@@ -428,7 +447,7 @@ ZMK_LAYER(num,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LSHFT N0 &hml LCTRL N4 &hml LALT N5  &hml LGUI N6  XXX             X_MM     XXX           XXX           XXX           XXX           XXX             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     XXX           &kp N1        &kp N2        &kp N3        XXX             X_MB     XXX           XXX           XXX           XXX           XXX             X_RB
+    X_LB     XXX           &kp N1        &kp N2        &kp N3        XXX             X_MB     XXX           XXX           ___           ___           XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
