@@ -358,8 +358,14 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 
 int test=1;
 if(test==1) {
+  #if defined I_UML_HM  // top row, left
+    #undef I_UML_HM
+  #endif
   #define I_UML_HM    &hmr_umlaut UML Q
 } else {
+  #if defined I_UML_HM  // top row, left
+    #undef I_UML_HM
+  #endif
   #define I_UML_HM    &hmr_umlaut UML I
 }
 // macOS aliases
