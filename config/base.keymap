@@ -357,17 +357,17 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 // #define I_UML_HM    &hmr_umlaut UML I
 
 #define TEST 1;
-if(TEST==1) {
+#if defined TEST
   #if defined I_UML_HM  // top row, left
     #undef I_UML_HM
   #endif
   #define I_UML_HM    &hmr_umlaut UML Q
-} else {
+#else
   #if defined I_UML_HM  // top row, left
     #undef I_UML_HM
   #endif
   #define I_UML_HM    &hmr_umlaut UML I
-}
+#endif
 // macOS aliases
 
 // tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
