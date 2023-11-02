@@ -74,6 +74,9 @@ MAKE_HRM(hmr_lpar_lt, &kp, &lpar_lt, KEYS_L THUMBS)    // "    "   "   "
 // MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 MAKE_HRM(hmr_rpar_gt_swi, &mo, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 
+MAKE_HRM(hml_umlaut, &mo, &kp, KEYS_R THUMBS)  // Umlaut HRMs
+MAKE_HRM(hmr_umlaut, &mo, &kp, KEYS_L THUMBS)  // Umlaut HRMs
+
 /* Nav cluster */
 
 // long-tap action on hold, short-tap action on all interrupts
@@ -344,11 +347,14 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define LBKT_HM     &hml LCTRL LBKT
 #define LBRC_HM     &hml LALT LBRC
 #define LPAR_HM     &hml LGUI LPAR
+#define E_UML_HM    &hml_umlaut UML E
+
 // right hand
 #define RPAR_HM     &hmr RGUI RPAR
 #define RBRC_HM     &hmr RALT RBRC
 #define RBKT_HM     &hmr RCTRL RBKT
 #define GT_HM       &hmr RSHIFT GT
+#define I_UML_HM    &hmr_umlaut UML I
 
 // macOS aliases
 
@@ -376,7 +382,7 @@ ZMK_CONDITIONAL_LAYER(FN NUM, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T           X_MT     &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
+    X_LT     &kp Q         &kp W         E_UML_HM      &kp R         &kp T           X_MT     &kp Y         &kp U         I_UML_HM      &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LSHIFT A &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
