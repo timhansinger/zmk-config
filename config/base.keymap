@@ -135,6 +135,18 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
 
 /* Caps-word, num-word and smart-mouse */
 
+// #define TEST 1;
+// #if defined TEST
+//   #if defined I_UML_HM  // top row, left
+//     #undef I_UML_HM
+//   #endif
+//   #define I_UML_HM    &hmr_umlaut UML Q
+// #else
+//   #if defined I_UML_HM  // top row, left
+//     #undef I_UML_HM
+//   #endif
+//   #define I_UML_HM    &hmr_umlaut UML I
+// #endif
 // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
 ZMK_BEHAVIOR(smart_shft, mod_morph,
     bindings = <&sk LSHFT>, <&caps_word>;
@@ -354,20 +366,8 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define RBRC_HM     &hmr RALT RBRC
 #define RBKT_HM     &hmr RCTRL RBKT
 #define GT_HM       &hmr RSHIFT GT
-// #define I_UML_HM    &hmr_umlaut UML I
+#define I_UML_HM    &hmr_umlaut UML I
 
-#define TEST 1;
-#if defined TEST
-  #if defined I_UML_HM  // top row, left
-    #undef I_UML_HM
-  #endif
-  #define I_UML_HM    &hmr_umlaut UML Q
-#else
-  #if defined I_UML_HM  // top row, left
-    #undef I_UML_HM
-  #endif
-  #define I_UML_HM    &hmr_umlaut UML I
-#endif
 // macOS aliases
 
 // tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
@@ -401,7 +401,7 @@ ZMK_LAYER(base,
     X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     // X_LH                                               &lt FN RET    &lt_spc NAV 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
-    X_LH                                               &lt FN ESC    &lt_spc SYM 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
+    X_LH                                               &lt FN ESC    &lt_spc SYM 0   X_MH     &kp LSHIFT    SMART_NUM                                                 X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
