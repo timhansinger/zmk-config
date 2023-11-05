@@ -260,7 +260,7 @@ ZMK_BEHAVIOR(lt_sk, hold_tap,
 )
 
 // Tap: Toggle layer | Hold: Momentary layer toggle
-ZMK_BEHAVIOR(lt_tog, hold_tap,
+ZMK_BEHAVIOR(mo_tog, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
     quick-tap-ms = <QUICK_TAP_MS>;
@@ -472,9 +472,9 @@ ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     XXX           &kp N7        &kp N8        &kp N9        XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp LSHFT     &kp LCTRL    &hml LALT MULTIPLY &hml LGUI PLUS &kp EQUAL  X_MM     &kp N0        &kp N4        &kp N5        &kp N6        XXX             X_RM
+    X_LM     &kp LSHFT     &kp LCTRL    &hml LALT STAR &hml LGUI PLUS &kp EQUAL      X_MM     &kp N0        &kp N4        &kp N5        &kp N6        XXX             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     XXX           XXX           &kp DIVIDE    &kp MINUS     XXX             X_MB     XXX           &kp N1        &kp N2        &kp N3        XXX             X_RB
+    X_LB     XXX           XXX           &kp FSLH      &kp MINUS     XXX             X_MB     XXX           &kp N1        &kp N2        &kp N3        XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     &dot_morph    &comma_morph                                              X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
