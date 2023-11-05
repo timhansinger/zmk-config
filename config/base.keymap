@@ -147,6 +147,7 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
 //   #endif
 //   #define I_UML_HM    &hmr_umlaut UML I
 // #endif
+
 // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
 ZMK_BEHAVIOR(smart_shft, mod_morph,
     bindings = <&sk LSHFT>, <&caps_word>;

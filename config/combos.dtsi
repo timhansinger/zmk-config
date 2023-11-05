@@ -40,7 +40,7 @@ ZMK_COMBO(tab,   HRC_TAB,       LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
 // ZMK_COMBO(copy,  &lt UML LG(C), LB3 LB2,     DEF NAV NUM UML, COMBO_TERM_FAST)  // macOS
 // ZMK_COMBO(paste, &kp LG(V),     LB2 LB1,     DEF NAV NUM, COMBO_TERM_FAST)  // macOS
 // ZMK_COMBO(uml_tab,  &lt UML TAB,   LB3 LB2,     DEF NAV NUM UML, COMBO_TERM_FAST)  // macOS
-ZMK_COMBO(num,  &lt_tog NUM NUM,   LB3 LB2,     DEF NAV NUM UML, COMBO_TERM_FAST)  // macOS
+ZMK_COMBO(num_num,  &lt_tog NUM NUM,   LB3 LB2,     DEF NAV NUM UML, COMBO_TERM_FAST)  // macOS
 
 // #define HYP LC(LS(LA(LGUI)))
 // ZMK_COMBO(ret,   &lt_sk UML HYP,   LB3 LB2,     DEF NAV NUM UML, COMBO_TERM_FAST)  // macOS
