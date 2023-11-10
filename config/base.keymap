@@ -193,6 +193,7 @@ ZMK_BEHAVIOR(swapper, tri_state,
 )
 
 // Sticky layer + sticky shift (workaround for issue #1421)
+/*
 ZMK_BEHAVIOR(sls, sticky_key,
     release-after-ms = <1000>;
     bindings = <&uc_shift>;
@@ -205,6 +206,7 @@ ZMK_BEHAVIOR(uc_shift, macro,
              , <&macro_pause_for_release>
              , <&macro_release &mo UC &kp LSHFT>;
 )
+*/
 
 // tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
 ZMK_BEHAVIOR(comma_morph, mod_morph,
