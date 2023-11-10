@@ -9,8 +9,8 @@
 #define X_RM  &kp RET       // middle row, right
 #define X_RB  &none         // bottom row, right
 
-#define X_LH  &smart_mouse  // thumb row, left
-#define X_RH  &bs_del       // thumb row, right
+#define X_LH  &none         // thumb row, left
+#define X_RH  &none         // thumb row, right
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
