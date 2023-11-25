@@ -10,17 +10,13 @@
 #endif
 
 #include "../zmk-nodefree-config/helper.h"
-//#include "../zmk-nodefree-config/international_chars/greek.dtsi"
-//#include "../zmk-nodefree-config/international_chars/german.dtsi"
 
 #define DEF 0
 #define SYM 1
-//#define FN 2
 #define FN 2
 #define MEDIA 3
 #define NUM 4
 #define SYS 5
-//#define UC 5
 #define MOUSE 6
 #define UML 7
 #define SWO 8
@@ -138,19 +134,6 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
 
 /* Caps-word, num-word and smart-mouse */
 
-// #define TEST 1;
-// #if defined TEST
-//   #if defined I_UML_HM  // top row, left
-//     #undef I_UML_HM
-//   #endif
-//   #define I_UML_HM    &hmr_umlaut UML Q
-// #else
-//   #if defined I_UML_HM  // top row, left
-//     #undef I_UML_HM
-//   #endif
-//   #define I_UML_HM    &hmr_umlaut UML I
-// #endif
-
 // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
 ZMK_BEHAVIOR(smart_shft, mod_morph,
     bindings = <&sk LSHFT>, <&caps_word>;
@@ -261,6 +244,12 @@ ZMK_BEHAVIOR(dot_spc, macro,
     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 )
 
+//dvorak morph
+
+MAKE_HRM(hml_dotmorph, &mo, &dot_morph, KEYS_R THUMBS)  // Umlaut HRMs
+MAKE_HRM(hml_commamorph, &mo, &comma_morph, KEYS_R THUMBS)  // Umlaut HRMs
+
+
 #define HYP LC(LS(LA(LGUI)))
 #define MEH LC(LS(LALT))
 // tap: sticky hyper | hold: activate layer
@@ -368,12 +357,6 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
-#define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
-#define DSK_NEXT    &hmr RALT LG(LC(RIGHT))  // next     desktop
-#define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
-#define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
-#define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-#define VOL_DOWN    &hmr RALT C_VOL_DN
 
 // left hand
 #define LT_HM       &hml LSHIFT LT
@@ -385,6 +368,10 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define W_SWOOH_HM  &hml_umlaut SWOOH W
 #define E_FN_HM    &hml_umlaut FN E
 
+// dvorak
+#define P_UML_HM    &hml_umlaut UML P
+#define COMMA_SWOOH_HM  &hml_umlaut SWOOH W
+
 // right hand
 #define RPAR_HM     &hmr RGUI RPAR
 #define RBRC_HM     &hmr RALT RBRC
@@ -392,6 +379,10 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define GT_HM       &hmr RSHIFT GT
 #define U_UML_HM    &hmr_umlaut UML U
 #define I_UML_HM    &hmr_umlaut MEDIA I
+
+//dvorak
+#define G_UML_HM    &hmr_umlaut UML G
+#define C_UML_HM    &hmr_umlaut MEDIA C
 
 // macOS aliases
 
@@ -401,46 +392,39 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 // tap: Next Tab | shift + tap: Yabai: focus next window in window tree
 #define TAB_WIN_NXT &mt LA(C)   LS(LG(RBKT))
 
-// // tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
-// ZMK_BEHAVIOR(tab_next, mod_morph,
-//     bindings = <&kp LS(LG(RBKT))>, <&kp LA(C)>;
-//     mods = <(MOD_LSFT|MOD_RSFT)>;
-// )
-//
-// // tap: Next Tab | shift + tap: Yabai: focus next window in window tree
-// ZMK_BEHAVIOR(tab_prev, mod_morph,
-//     bindings = <&kp LS(LG(LBKT))>, <&kp LA(Z)>;
-//     mods = <(MOD_LSFT|MOD_RSFT)>;
-// )
-
 /* Keymap */
 
 ZMK_CONDITIONAL_LAYER(SYM NUM, SYS)  // FN + NUM --> SYS
 
-ZMK_LAYER(base,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp Q         W_SWOOH_HM    E_FN_HM       R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_UML_HM      &kp O         &kp P           X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    // X_LH                                               &lt FN RET    &lt_spc NAV 0   X_MH     &smart_shft   SMART_NUM                                                 X_RH
-    X_LH                                              &kp_kp LCTRL ESC &lt_spc SYM 0 X_MH     &kp LSHIFT    &lt_sk NUM HYP                                            X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-)
-
 // ZMK_LAYER(base,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-//     X_LT     &kp Q         &kp W         &kp F         &kp P         &kp B           X_MT     &kp J         &kp L         &kp U         &kp Y         &kp SQT         X_RT
+//     X_LT     &kp Q         W_SWOOH_HM    E_FN_HM       R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_UML_HM      &kp O         &kp P           X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-//     X_LM     &hml LGUI A   &hml LALT R   &hml LCTRL S  &hml LSHFT T  &kp G           X_MM     &kp M         &hmr RSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O     X_RM
+//     X_LM     &hml LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-//     X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
+//     X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 // //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-//     X_LH                                               &lt_spc NAV 0 &lt FN RET      X_MH     SMART_NUM     &smart_shft                                               X_RH
+//     X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
+
+ZMK_LAYER(base,
+//  ;,.py  fgcrl
+//  aoeui  dhtns
+//  'qjkx  bmwvz
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT   &kp MINUS &hml_commamorph SWOOH 0 &hml_dotmorph FN 0 P_UML_HM &kp Y       X_MT     &kp F         G_UML_HM      C_UML_HM      &kp R         &kp L           X_RT
+//  X_LT     &kp Q         W_SWOOH_HM    E_FN_HM       R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_UML_HM      &kp O         &kp P           X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &hml LSHFT A  &hml LCTRL O  &hml LALT E   &hml LGUI U   &hml HYP I      X_MM     &hmr HYP D    &hmr RGUI H   &hmr RALT T   &hmr RCTRL N  &hmr RSHFT S    X_RM
+//  X_LM     &hml LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &qexcl        &kp Q         &kp J         &kp K         &kp X           X_MB     &kp B         &kp M         &kp W         &kp V         &kp Z           X_RB
+//  X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
+//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
+)
 
 //   !+&|=@
 // <[{('")}]>
@@ -456,22 +440,6 @@ ZMK_LAYER(sym,
     X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )                                                                                                // TODO: SWITCH CANCEL
-
-/*
-ZMK_LAYER(fn,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        XXX             X_MT     XXX           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    XXX             X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LSHFT F11 &hml LCTRL F4 &hml LALT F5 &hml LGUI F6  &swapper        X_MM     XXX           ___           VOL_DOWN      ___           XXX             X_RM
-//                                                                                                      TODO: replace DSK_PREV and DSK_NEXT with Yabai variants
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        &kp LSHFT       X_MB     PIN_APP       PIN_WIN       DSK_MGR       XXX           XXX             X_RB
-//  X_LB     &kp F10       &kp F1        &kp F2        &kp F3        &kp LSHFT       X_MB     TODO: REPLACE THESE WITH MACOS VARIANTS   XXX           XXX             X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     &kp C_MUTE    &kp C_PP                                                  X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-)
-*/
 
 ZMK_LAYER(fn,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
@@ -521,20 +489,6 @@ ZMK_LAYER(sys,
     X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
-
-/*
-ZMK_LAYER(uc,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     XXX           &el_omega     &el_phi       &el_pi        &el_beta        X_MT     XXX           &el_lambda    &el_upsilon   &el_psi       &de_eszett      X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &el_alpha     &el_rho       &el_sigma     &el_tau       &el_gamma       X_MM     &el_mu        &el_nu        &el_epsilon   &el_iota      &el_omikron     X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &el_zeta      &el_xi        &el_chi       &el_delta     &el_theta       X_MB     &el_kappa     &el_eta       &de_ae        &de_oe        &de_ue          X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰───────────────────────────╯                                           ╰──────╯
-)
-*/
 
 ZMK_LAYER(mouse,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
@@ -592,7 +546,6 @@ ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     &kp PG_UP     NAV_BSPC      TAB_WIN_PRV   TAB_WIN_NXT   NAV_DEL         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    // X_LM     &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
     X_LM     &kp LALT      ___           ___           &kp LGUI      XXX             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       XXX             X_RB
