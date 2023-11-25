@@ -20,9 +20,10 @@
 #define SYS 6
 #define MOUSE 7
 #define UML 8
-#define SWO 9
-#define SWOOH 10
-#define NAV 11
+#define UMLD 9
+#define SWO 10
+#define SWOOH 11
+#define NAV 12
 
 #include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi"
@@ -370,7 +371,7 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define E_FN_HM    &hml_umlaut FN E
 
 // dvorak
-#define P_UML_HM    &hml_umlaut UML P
+#define P_UML_HM    &hml_umlaut UMLD P
 #define COMMA_SWOOH_HM  &hml_umlaut SWOOH W
 
 // right hand
@@ -382,7 +383,7 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define I_UML_HM    &hmr_umlaut MEDIA I
 
 //dvorak
-#define G_UML_HM    &hmr_umlaut UML G
+#define G_UML_HM    &hmr_umlaut UMLD G
 #define C_UML_HM    &hmr_umlaut MEDIA C
 
 // macOS aliases
@@ -508,6 +509,18 @@ ZMK_LAYER(umlaut,
     X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     XXX           &ue_morph     XXX           &oe_morph     XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &ae_morph     &kp RA(S)     XXX           XXX           XXX             X_MM     XXX           XXX           XXX           XXX           XXX             X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     XXX           XXX           XXX           XXX           XXX             X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
+//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
+)
+
+ZMK_LAYER(umlaut_d,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     XXX           XXX           XXX           XXX           XXX             X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &ae_morph     &oe_morph     XXX           $ue_morph     XXX             X_MM     XXX           XXX           XXX           XXX           &kp RA(S)       X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     XXX           XXX           XXX           XXX           XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
