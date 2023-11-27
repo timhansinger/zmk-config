@@ -13,8 +13,9 @@
 #define X_RH  &none         // thumb row, right
 
 // Special for GAME layer
+#define X_LTG &kp TAB       // top row, left, GAME layer
 #define X_LMG &kp LSHIFT    // middle row, left, GAME layer
-#define X_RTG &kp BSPC      // top row, right
+#define X_RTG &kp BSPC      // top row, right, GAME layer
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
