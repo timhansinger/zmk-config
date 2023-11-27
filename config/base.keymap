@@ -13,17 +13,18 @@
 
 #define DEF 0
 #define DVORAK 1
-#define SYM 2
-#define FN 3
-#define MEDIA 4
-#define NUM 5
-#define SYS 6
-#define MOUSE 7
-#define UML 8
-#define UMLD 9
-#define SWO 10
-#define SWOOH 11
-#define NAV 12
+#define GAME 2
+#define SYM 3
+#define FN 4
+#define MEDIA 5
+#define NUM 6
+#define SYS 7
+#define MOUSE 8
+#define UML 9
+#define UMLD 10
+#define SWO 11
+#define SWOOH 12
+#define NAV 13
 
 #include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi"
@@ -226,6 +227,13 @@ ZMK_BEHAVIOR(kp_kp, hold_tap,
     bindings = <&kp>, <&kp>;
 )
 
+ZMK_BEHAVIOR(mo_kp, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&kp>;
+)
+
 //// tap: space | shift + tap: return | hold: activate layer
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_BEHAVIOR(lt_spc, hold_tap,
@@ -398,7 +406,7 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 
 ZMK_CONDITIONAL_LAYER(SYM NUM, SYS)  // FN + NUM --> SYS
 
-ZMK_LAYER(base,
+ZMK_LAYER(qwerty,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp Q         W_SWOOH_HM    E_FN_HM       R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_UML_HM      &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -425,6 +433,18 @@ ZMK_LAYER(dvorak,
 //  X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
+//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
+)
+
+ZMK_LAYER(game,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T           X_MT     &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LMG    &kp A         &kp S         &kp D         &kp F         &kp G           X_MM     &kp H         &kp J         &kp K         &kp L         &kp MINUS       X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                             &mo_kp SYM ESC  &kp SPACE       X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -482,11 +502,11 @@ ZMK_LAYER(num,
 
 ZMK_LAYER(sys,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT                                _BT_SEL_KEYS_                                X_MT     XXX           XXX           XXX           XXX           XXX             X_RT
+    X_LT     _BT_CLR_KEY_  XXX           XXX           XXX           XXX             X_MT     XXX           XXX           XXX           XXX           XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     _BT_CLR_KEY_  XXX           XXX           XXX           &bootloader     X_MM     &bootloader   &to DEF       &to DVORAK    XXX           XXX             X_RM
+    X_LM                                _BT_SEL_KEYS_                                X_MM     XXX           &to DEF       &to DVORAK    &to GAME      XXX             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     XXX           XXX           XXX           XXX           &sys_reset      X_MB     &sys_reset    XXX           XXX           XXX           XXX             X_RB
+    X_LB     XXX           XXX           XXX           &sys_reset    &bootloader     X_MB     &bootloader   &sys_reset    XXX           XXX           XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯

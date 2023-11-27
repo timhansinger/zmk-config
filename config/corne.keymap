@@ -4,6 +4,7 @@
 /* map Zen's extra keys */
 #define X_LT  &none         // top row, left
 #define X_LM  &kp ESC       // middle row, left
+#define X_LMG &kp LSHIFT    // middle row, left, GAME layer
 #define X_LB  &none         // bottom row, left
 #define X_RT  &none         // top row, right
 #define X_RM  &kp RET       // middle row, right

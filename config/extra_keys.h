@@ -8,6 +8,9 @@
 #if !defined X_LM  // middle row, left
     #define X_LM
 #endif
+#if !defined X_LMG  // middle row, left, GAME layer
+    #define X_LMG
+#endif
 #if !defined X_LB  // bottom row, left
     #define X_LB
 #endif
