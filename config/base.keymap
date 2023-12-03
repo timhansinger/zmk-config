@@ -116,6 +116,13 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
         <&macro_release>,
         <&kp LGUI>;
 )
+
+// tap: qmark | shift + tap: excl
+ZMK_BEHAVIOR(qexcl, mod_morph,
+    bindings = <&kp QMARK>, <&kp EXCL>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
 ZMK_BEHAVIOR(as_lgui_qexcl, hold_tap, bindings = <&lgui_key_macro>, <&qexcl>; MT_CORE)
 ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
     wait-ms = <0>;
@@ -136,7 +143,7 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
 #define PASTE_V   &as_lgui V     V       // tap: V   | long-tap: macOS paste
 
 // dvorak
-#define UNDO_QEXCL    &as_lgui_qexcl Z  qexcl     // tap: qexcl | long-tap: macOS undo
+#define UNDO_QEXCL    &as_lgui_qexcl Z  &qexcl     // tap: qexcl | long-tap: macOS undo
 #define CUT_Q         &as_lgui X     Q       // tap: Q     | long-tap: macOS undo
 #define COPY_J        &as_lgui C     J       // tap: J     | long-tap: macOS undo
 #define PASTE_K       &as_lgui V     K       // tap: K     | long-tap: macOS undo
@@ -227,12 +234,6 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
 ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
     bindings = <&kp COLON>, <&kp GREATER_THAN>;
     mods = <(MOD_LCTL|MOD_RCTL)>;
-)
-
-// tap: qmark | shift + tap: excl
-ZMK_BEHAVIOR(qexcl, mod_morph,
-    bindings = <&kp QMARK>, <&kp EXCL>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
 ZMK_BEHAVIOR(kp_kp, hold_tap,
