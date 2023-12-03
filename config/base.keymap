@@ -376,7 +376,7 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define R_UML_HM    &hml_umlaut UML R
 
 #define W_SWOOH_HM  &hml_umlaut SWOOH W
-#define E_FN_HM    &hml_umlaut FN E
+#define E_NUM_HM    &hml_umlaut NUM E
 
 // dvorak
 #define P_UML_HM    &hml_umlaut UMLD P
@@ -388,11 +388,11 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 #define RBKT_HM     &hmr RCTRL RBKT
 #define GT_HM       &hmr RSHIFT GT
 #define U_UML_HM    &hmr_umlaut UML U
-#define I_UML_HM    &hmr_umlaut MEDIA I
+#define I_MEDIA_HM  &hmr_umlaut MEDIA I
 
 //dvorak
 #define G_UML_HM    &hmr_umlaut UMLD G
-#define C_UML_HM    &hmr_umlaut MEDIA C
+#define C_MEDIA_HM  &hmr_umlaut MEDIA C
 
 // macOS aliases
 
@@ -404,17 +404,17 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(SYM NUM, SYS)  // FN + NUM --> SYS
+ZMK_CONDITIONAL_LAYER(SYM FN, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp Q         W_SWOOH_HM    E_FN_HM       R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_UML_HM      &kp O         &kp P           X_RT
+    X_LT     &kp Q         W_SWOOH_HM    E_NUM_HM      R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_MEDIA_HM    &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
+    X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk FN HYP                                             X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -423,16 +423,13 @@ ZMK_LAYER(dvorak,
 //  aoeui  dhtns
 //  'qjkx  bmwvz
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT   &kp MINUS &hml_commamorph SWOOH 0 &hml_dotmorph FN 0 P_UML_HM &kp Y       X_MT     &kp F         G_UML_HM      C_UML_HM      &kp R         &kp L           X_RT
-//  X_LT     &kp Q         W_SWOOH_HM    E_FN_HM       R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_UML_HM      &kp O         &kp P           X_RT
+    X_LT   &kp MINUS &hml_commamorph SWOOH 0 &hml_dotmorph NUM 0 P_UML_HM &kp Y      X_MT     &kp F         G_UML_HM      C_MEDIA_HM    &kp R         &kp L           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LSHFT A  &hml LCTRL O  &hml LALT E   &hml LGUI U   &hml HYP I      X_MM     &hmr HYP D    &hmr RGUI H   &hmr RALT T   &hmr RCTRL N  &hmr RSHFT S    X_RM
-//  X_LM     &hml LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &qexcl        &kp Q         &kp J         &kp K         &kp X           X_MB     &kp B         &kp M         &kp W         &kp V         &kp Z           X_RB
-//  X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
+    X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk FN HYP                                             X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -444,7 +441,7 @@ ZMK_LAYER(game,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                             &mo_kp SYM ESC  &kp SPACE       X_MH     &kp LSHIFT   &lt_sk NUM HYP                                             X_RH
+    X_LH                                             &mo_kp SYM ESC  &kp SPACE       X_MH     &kp LSHIFT   &lt_sk FN HYP                                             X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -489,7 +486,7 @@ ZMK_LAYER(media,
 
 ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     &kp N0        &kp N7        &kp N8        &kp N9        XXX             X_RT
+    X_LT     &kp LCTRL     &kp LALT      XXX           &kp LGUI      &kp LS(LGUI)    X_MT     &kp N0        &kp N7        &kp N8        &kp N9        XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &kp LSHFT     &kp LCTRL   &hml LALT STAR &hml LGUI PLUS &kp EQUAL       X_MM     &kp N0        &kp N4        &kp N5        &kp N6        &comma_morph    X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
@@ -565,7 +562,7 @@ ZMK_LAYER(swapper,
 // Keyboard Maestro Application Switcher Layer
 ZMK_LAYER(one_handed_swapper,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     XXX           ___           &kp LSHFT     &swapper      XXX             X_MT     XXX           XXX           XXX           XXX           XXX             X_RT
+    X_LT     XXX           XXX           &kp LSHFT     &swapper      XXX             X_MT     XXX           XXX           XXX           XXX           XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     XXX           XXX           XXX           XXX           XXX             X_MM     XXX           XXX           XXX           XXX           XXX             X_RM
 
@@ -580,7 +577,7 @@ ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     &kp PG_UP     NAV_BSPC      TAB_WIN_PRV   TAB_WIN_NXT   NAV_DEL         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp LALT      ___           ___           &kp LGUI      XXX             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
+    X_LM     &kp LALT      XXX           XXX           &kp LGUI      XXX             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
