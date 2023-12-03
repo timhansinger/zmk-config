@@ -116,15 +116,30 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
         <&macro_release>,
         <&kp LGUI>;
 )
+ZMK_BEHAVIOR(as_lgui_qexcl, hold_tap, bindings = <&lgui_key_macro>, <&qexcl>; MT_CORE)
+ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
+    wait-ms = <0>;
+    tap-ms = <0>;
+    bindings =
+        <&macro_press>,
+        <&kp LGUI &macro_param_1to1>,
+        <&macro_tap>,
+        <&kp MACRO_PLACEHOLDER>,
+        <&macro_release>,
+        <&kp LGUI>;
+)
 
+// qwerty
 #define UNDO_Z    &as_lgui Z     Z       // tap: Z   | long-tap: macOS undo
 #define CUT_X     &as_lgui X     X       // tap: X   | long-tap: macOS cut
 #define COPY_C    &as_lgui C     C       // tap: C   | long-tap: macOS copy
 #define PASTE_V   &as_lgui V     V       // tap: V   | long-tap: macOS paste
-// #define UNDO_Z    &mt LG(Z)     Z       // tap: Z   | long-tap: macOS undo
-// #define CUT_X     &mt LG(X)     X       // tap: X   | long-tap: macOS cut
-// #define COPY_C    &mt LG(C)     C       // tap: C   | long-tap: macOS copy
-// #define PASTE_V   &mt LG(V)     V       // tap: V   | long-tap: macOS paste
+
+// dvorak
+#define UNDO_QEXCL    &as_lgui_qexcl Z       // tap: qexcl | long-tap: macOS undo
+#define CUT_Q         &as_lgui X     Q       // tap: Q     | long-tap: macOS undo
+#define COPY_J        &as_lgui C     J       // tap: J     | long-tap: macOS undo
+#define PASTE_K       &as_lgui V     K       // tap: K     | long-tap: macOS undo
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 // #define MASK_MODS(NAME, MODS, BINDING) \
@@ -427,7 +442,7 @@ ZMK_LAYER(dvorak,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LSHFT A  &hml LCTRL O  &hml LALT E   &hml LGUI U   &hml HYP I      X_MM     &hmr HYP D    &hmr RGUI H   &hmr RALT T   &hmr RCTRL N  &hmr RSHFT S    X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &qexcl        &kp Q         &kp J         &kp K         &kp X           X_MB     &kp B         &kp M         &kp W         &kp V         &kp Z           X_RB
+    X_LB     UNDO_QEXCL    CUT_Q         COPY_J        PASTE_K       &kp X           X_MB     &kp B         &kp M         &kp W         &kp V         &kp Z           X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                             &kp_kp LCTRL ESC &lt_spc SYM 0  X_MH     &kp LSHIFT   &lt_sk FN HYP                                             X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
