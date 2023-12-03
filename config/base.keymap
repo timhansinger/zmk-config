@@ -143,7 +143,7 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
 #define PASTE_V   &as_lgui V     V       // tap: V   | long-tap: macOS paste
 
 // dvorak
-#define UNDO_QEXCL    &as_lgui_qexcl Z  &qexcl     // tap: qexcl | long-tap: macOS undo
+#define UNDO_QEXCL    &as_lgui_qexcl Z  0     // tap: qexcl | long-tap: macOS undo
 #define CUT_Q         &as_lgui X     Q       // tap: Q     | long-tap: macOS undo
 #define COPY_J        &as_lgui C     J       // tap: J     | long-tap: macOS undo
 #define PASTE_K       &as_lgui V     K       // tap: K     | long-tap: macOS undo
