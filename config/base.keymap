@@ -412,10 +412,10 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 
 // macOS aliases
 
-// tap: Previous Tab | shift + tap: Yabai: focus previous window in window tree
+// tap: Previous Tab | long-tap: Yabai: focus previous window in window tree
 #define TAB_WIN_PRV &mt LA(Z)   LS(LG(LBKT))
 
-// tap: Next Tab | shift + tap: Yabai: focus next window in window tree
+// tap: Next Tab | long-tap: Yabai: focus next window in window tree
 #define TAB_WIN_NXT &mt LA(C)   LS(LG(RBKT))
 
 /* Keymap */
@@ -466,9 +466,9 @@ ZMK_LAYER(game,
 // `^#?~\/*$%
 ZMK_LAYER(sym,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     XXX           XXX           &kp EXCL      &kp PLUS      &kp AMPS        X_MT     &kp PIPE      &kp EQUAL     &kp AT        XXX           XXX             X_RT
+    X_LT     XXX           &kp UNDER     &kp EXCL      &kp PLUS      &kp AMPS        X_MT     &kp PIPE      &kp EQUAL     &kp AT        &kp MINUS     XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     LT_HM         LBKT_HM       LBRC_HM       LPAR_HM       &kp SQT         X_MM     &kp DQT       RPAR_HM       RBRC_HM       RBKT_HM       GT_HM           X_RM
+    X_LM     LT_HM         LBKT_HM       LBRC_HM       LPAR_HM       &kp DQT         X_MM     &kp SQT       RPAR_HM       RBRC_HM       RBKT_HM       GT_HM           X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp GRAVE     &kp CARET     &kp HASH      &kp QMARK     &kp TILDE       X_MB     &kp BSLH      &kp SLASH     &kp ASTRK     &kp DOLLAR    &kp PERCENT     X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
