@@ -75,6 +75,14 @@
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
     )
+
+// reuse basic mod-morph scheme
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
+    ZMK_BEHAVIOR(NAME, mod_morph, \
+                mods = <(MOD_L ## MOD|MOD_R ## MOD)>; \
+                bindings = <BINDING1>, <BINDING2>; \
+    )
+
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
@@ -125,10 +133,12 @@ ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
 )
 
 // tap: qmark | shift + tap: excl
-ZMK_BEHAVIOR(qexcl, mod_morph,
-    bindings = <&kp QMARK>, <&kp EXCL>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
+SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
+
+// ZMK_BEHAVIOR(qexcl, mod_morph,
+//     bindings = <&kp QMARK>, <&kp EXCL>;
+//     mods = <(MOD_LSFT|MOD_RSFT)>;
+// )
 
 ZMK_BEHAVIOR(as_lgui_qexcl, hold_tap, bindings = <&lgui_key_macro>, <&qexcl>; MT_CORE)
 ZMK_BEHAVIOR(lgui_key_macro, macro_one_param,
@@ -195,7 +205,7 @@ ZMK_BEHAVIOR(num_dance, tap_dance,
 // smart-mouse, requires PR #1366
 ZMK_BEHAVIOR(smart_mouse, tri_state,
     bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-    ignored-key-positions = <LT1 LT3 RT1 RT2 RT3 RM1 RM2 RM3 RH0 RH1>;
+    ignored-key-positions = <LT1 LT3 RT0 RT1 RT2 RT3 RT4 RM1 RM2 RM3 RB1 RB2 RB3 RH0 RH1>;
     ignored-layers = <MOUSE>;
 )
 
