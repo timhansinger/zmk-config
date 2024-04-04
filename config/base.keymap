@@ -234,24 +234,28 @@ ZMK_BEHAVIOR(uc_shift, macro,
 */
 
 // tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
-ZMK_BEHAVIOR(comma_morph, mod_morph,
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-    bindings = <&kp COMMA>, <&comma_inner_morph>;
-)
-ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
-    bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
-)
+SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
+SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
+// ZMK_BEHAVIOR(comma_morph, mod_morph,
+//     mods = <(MOD_LSFT|MOD_RSFT)>;
+//     bindings = <&kp COMMA>, <&comma_inner_morph>;
+// )
+// ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
+//     bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
+//     mods = <(MOD_LCTL|MOD_RCTL)>;
+// )
 
 // tap: dot | shift + tap: colon | ctrl + shift + tap: >
-ZMK_BEHAVIOR(dot_morph, mod_morph,
-    bindings = <&kp DOT>, <&dot_inner_morph>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
-    bindings = <&kp COLON>, <&kp GREATER_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
-)
+SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
+SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
+// ZMK_BEHAVIOR(dot_morph, mod_morph,
+//     bindings = <&kp DOT>, <&dot_inner_morph>;
+//     mods = <(MOD_LSFT|MOD_RSFT)>;
+// )
+// ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
+//     bindings = <&kp COLON>, <&kp GREATER_THAN>;
+//     mods = <(MOD_LCTL|MOD_RCTL)>;
+// )
 
 ZMK_BEHAVIOR(kp_kp, hold_tap,
     flavor = "balanced";
@@ -411,8 +415,8 @@ ZMK_BEHAVIOR(shifted_umlaut, macro_one_param,
 // NEW HERE
 #define A_UML_HM  &hml_umlaut UML A
 #define S_FN_HM  &hml_umlaut FN S
-#define D_NAV_HM  &hml_umlaut NAV D
-#define F_NUM_HM  &hml_umlaut NUM F
+#define F_NAV_HM  &hml_umlaut NAV F
+#define D_NUM_HM  &hml_umlaut NUM D
 // NEW ENDS HERE
 
 #define W_SWOOH_HM  &hml_umlaut SWOOH W
@@ -460,10 +464,10 @@ ZMK_LAYER(base,
 // SWOOH, MEDIA, BS, DEL, ESC, TAB
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //  X_LT     &kp Q         W_SWOOH_HM    E_NUM_HM      R_UML_HM      &kp T           X_MT     &kp Y         U_UML_HM      I_MEDIA_HM    &kp O         &kp P           X_RT
-    X_LT     &hml LSHFT Q  &hml LCTRL W  &hml LALT E   &hml LGUI R   &kp T           X_MT     &kp Y         &hmr RGUI U   &hmr RALT I   &hmr RCTRL O  &hmr RSHFT P    X_RT
+    X_LT     &hml LSHFT Q  &hml LCTRL W  &hml LALT E   &hml LGUI R   &hml MEH T      X_MT     &hmr MEH Y    &hmr RGUI U   &hmr RALT I   &hmr RCTRL O  &hmr RSHFT P    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
 //  X_LM     &hml LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &hml HYP G      X_MM     &hmr HYP H    &hmr RGUI J   &hmr RALT K   &hmr RCTRL L  &hmr RSHFT MINUS X_RM
-    X_LM     A_UML_HM      S_FN_HM       D_NAV_HM      F_NUM_HM      &hml HYP G      X_MM     &hmr HYP H    J_SWO_HM      &kp K         L_MEDIA_HM    MINS_UML_HM     X_RM
+    X_LM     A_UML_HM      S_FN_HM       D_NUM_HM      F_NAV_HM      &hml HYP G      X_MM     &hmr HYP H    J_SWO_HM      &kp K         L_MEDIA_HM    MINS_UML_HM     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     UNDO_Z        CUT_X         COPY_C        PASTE_V       &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
@@ -520,7 +524,7 @@ ZMK_LAYER(sym,
 // FN
 ZMK_LAYER(fn,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     XXX           &kp LALT      XXX           &kp LGUI      XXX             X_MT     XXX           &kp F7        &kp F8        &kp F9        &kp F10         X_RT
+    X_LT     &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      XXX             X_MT     XXX           &kp F7        &kp F8        &kp F9        &kp F10         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     XXX           XXX           XXX           XXX           XXX             X_MM     XXX           &kp F4        &kp F5        &kp F6        &kp F11         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -546,9 +550,10 @@ ZMK_LAYER(media,
 // NUM
 ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp LCTRL     &kp LALT      XXX           &kp LGUI      &kp LS(LGUI)    X_MT     &kp N0        &kp N7        &kp N8        &kp N9        XXX             X_RT
+    X_LT     &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &kp LS(LGUI)    X_MT     &kp N0        &kp N7        &kp N8        &kp N9        XXX             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp LSHFT     &kp LCTRL   &hml LALT STAR &hml LGUI PLUS &kp EQUAL       X_MM     &kp N0        &kp N4        &kp N5        &kp N6        &comma_morph    X_RM
+//  X_LM     &kp LSHFT     &kp LCTRL   &hml LALT STAR &hml LGUI PLUS &kp EQUAL       X_MM     &kp N0        &kp N4        &kp N5        &kp N6        &comma_morph    X_RM
+    X_LM     XXX           XXX           XXX           &kp LS(LGUI)  XXX             X_MM     &kp N0        &kp N4        &kp N5        &kp N6        &comma_morph    X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     X_LB     XXX           XXX           &kp FSLH     &hml LS(LGUI) MINUS XXX        X_MB     &kp N0        &kp N1        &kp N2        &kp N3        &dot_morph      X_RB
 //                                                    LS(LGUI) for macOS screen capture using N3/N4/N5
@@ -642,9 +647,9 @@ ZMK_LAYER(one_handed_swapper,
 //NAV
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     XXX           XXX           XXX           XXX           XXX             X_MT     &kp PG_UP     NAV_BSPC      TAB_WIN_PRV   TAB_WIN_NXT   NAV_DEL         X_RT
+    X_LT     &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &kp LS(LGUI)    X_MT     &kp PG_UP     NAV_BSPC      TAB_WIN_PRV   TAB_WIN_NXT   NAV_DEL         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp LALT      XXX           XXX           &kp LGUI      XXX             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
+    X_LM     XXX           &kp LALT      &kp LGUI      XXX           XXX             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     XXX           XXX           XXX           XXX           XXX             X_MB     &kp PG_DN     &kp TAB       &kp HOME      &kp END       XXX             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
