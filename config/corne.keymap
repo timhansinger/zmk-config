@@ -10,7 +10,7 @@
 #define X_RB  &none         // bottom row, right
 
 #define X_LH  &none         // thumb row, left
-#define X_RH  &none         // thumb row, right
+#define X_RH  &mo FN        // thumb row, right
 
 // Special for GAME layer
 #define X_LTG &kp TAB       // top row, left, GAME layer
